@@ -58,7 +58,7 @@ gym.register(
 # tiny-4ag-easy
 num_agents = 4
 size = "tiny"
-diff = "easy"
+diff = "-easy"
 gym.register(
     id=f"rware-{size}-{num_agents}ag{diff}-v1",
     entry_point="rware.warehouse:Warehouse",
