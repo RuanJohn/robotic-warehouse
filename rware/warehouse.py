@@ -427,7 +427,7 @@ class Warehouse(gym.Env):
                                                     "direction": spaces.Discrete(4),
                                                     "local_message": spaces.MultiBinary(
                                                         self.msg_bits
-                                                    ),
+                                                    ) if self.msg_bits > 0 else spaces.MultiBinary(1),
                                                     "has_shelf": spaces.MultiBinary(1),
                                                     "shelf_requested": spaces.MultiBinary(
                                                         1
@@ -697,8 +697,9 @@ class Warehouse(gym.Env):
         self.request_queue = list(
             np.random.choice(self.shelfs, size=self.request_queue_size, replace=False)
         )
-
-        return tuple([self._make_obs(agent) for agent in self.agents])
+        obs = tuple([self._make_obs(agent) for agent in self.agents])
+        infos = {agent_id: {} for agent_id in self.agents}
+        return obs, infos
         # for s in self.shelfs:
         #     self.grid[0, s.y, s.x] = 1
         # print(self.grid[0])
@@ -839,14 +840,19 @@ class Warehouse(gym.Env):
         if (
             self.max_inactivity_steps
             and self._cur_inactive_steps >= self.max_inactivity_steps
-        ) or (self.max_steps and self._cur_steps >= self.max_steps):
-            dones = self.n_agents * [True]
+        ):
+            terminations = self.n_agents * [True]
         else:
-            dones = self.n_agents * [False]
+            terminations = self.n_agents * [False]
+
+        if (self.max_steps and self._cur_steps >= self.max_steps):
+            truncations = self.n_agents * [True]
+        else:
+            truncations = self.n_agents * [False]
 
         new_obs = tuple([self._make_obs(agent) for agent in self.agents])
         info = {}
-        return new_obs, list(rewards), dones, info
+        return new_obs, list(rewards), terminations, truncations, info
 
     def render(self, mode="human"):
         if not self.renderer:
