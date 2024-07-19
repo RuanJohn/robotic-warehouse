@@ -25,7 +25,7 @@ setup(
     ],
     install_requires=[
         "numpy",
-        "gym",
+        "gymnasium",
         "pyglet",
         "networkx",
     ],

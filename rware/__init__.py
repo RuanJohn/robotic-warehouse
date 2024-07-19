@@ -1,4 +1,4 @@
-import gym
+import gymnasium
 
 from .warehouse import Action, ObserationType, RewardType, Warehouse
 
@@ -17,7 +17,7 @@ _difficulty = {"-easy": 2, "": 1, "-hard": 0.5}
 num_agents = 4
 size = "small"
 diff = ""
-gym.register(
+gymnasium.register(
     id=f"rware-{size}-{num_agents}ag{diff}-v1",
     entry_point="rware.warehouse:Warehouse",
     kwargs={
@@ -38,7 +38,7 @@ gym.register(
 num_agents = 4
 size = "tiny"
 diff = ""
-gym.register(
+gymnasium.register(
     id=f"rware-{size}-{num_agents}ag{diff}-v1",
     entry_point="rware.warehouse:Warehouse",
     kwargs={
@@ -59,7 +59,7 @@ gym.register(
 num_agents = 4
 size = "tiny"
 diff = "-easy"
-gym.register(
+gymnasium.register(
     id=f"rware-{size}-{num_agents}ag{diff}-v1",
     entry_point="rware.warehouse:Warehouse",
     kwargs={
@@ -80,7 +80,7 @@ gym.register(
 num_agents = 2
 size = "tiny"
 diff = ""
-gym.register(
+gymnasium.register(
     id=f"rware-{size}-{num_agents}ag{diff}-v1",
     entry_point="rware.warehouse:Warehouse",
     kwargs={

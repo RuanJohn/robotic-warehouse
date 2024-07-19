@@ -10,7 +10,7 @@ import sys
 import numpy as np
 import math
 import six
-from gym import error
+from gymnasium import error
 from rware.warehouse import Direction
 
 if "Apple" in sys.version:
@@ -26,8 +26,8 @@ except ImportError as e:
         """
     Cannot import pyglet.
     HINT: you can install pyglet directly via 'pip install pyglet'.
-    But if you really just want to install all Gym dependencies and not have to think about it,
-    'pip install -e .[all]' or 'pip install gym[all]' will do it.
+    But if you really just want to install all gymnasium dependencies and not have to think about it,
+    'pip install -e .[all]' or 'pip install gymnasium[all]' will do it.
     """
     )
 

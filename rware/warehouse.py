@@ -1,8 +1,8 @@
 import logging
 
 from collections import defaultdict, OrderedDict
-import gym
-from gym import spaces
+import gymnasium
+from gymnasium import spaces
 
 from rware.utils import MultiAgentActionSpace, MultiAgentObservationSpace
 
@@ -143,7 +143,7 @@ class Shelf(Entity):
         return (_LAYER_SHELFS,)
 
 
-class Warehouse(gym.Env):
+class Warehouse(gymnasium.Env):
 
     metadata = {"render.modes": ["human", "rgb_array"]}
 

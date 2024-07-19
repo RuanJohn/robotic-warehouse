@@ -1,10 +1,10 @@
-import gym
+import gymnasium
 
 
 class MultiAgentObservationSpace(list):
     def __init__(self, ma_space):
         for x in ma_space:
-            assert isinstance(x, gym.spaces.space.Space)
+            assert isinstance(x, gymnasium.spaces.space.Space)
 
         super().__init__(ma_space)
 
@@ -24,7 +24,7 @@ class MultiAgentObservationSpace(list):
 class MultiAgentActionSpace(list):
     def __init__(self, ma_space):
         for x in ma_space:
-            assert isinstance(x, gym.spaces.space.Space)
+            assert isinstance(x, gymnasium.spaces.space.Space)
 
         super(MultiAgentActionSpace, self).__init__(ma_space)
 

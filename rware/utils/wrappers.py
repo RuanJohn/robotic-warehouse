@@ -1,13 +1,13 @@
-import gym
+import gymnasium
 import numpy as np
 from rware import Action
-from gym import spaces
-from gym import ObservationWrapper
+from gymnasium import spaces
+from gymnasium import ObservationWrapper
 
 import math
 
 
-class FlattenAgents(gym.Wrapper):
+class FlattenAgents(gymnasium.Wrapper):
     def __init__(self, env):
         super().__init__(env)
         sa_action_space = [len(Action), *env.msg_bits * (2,)]
@@ -42,7 +42,7 @@ class FlattenAgents(gym.Wrapper):
         return observation, reward, done, info
 
 
-class DictAgents(gym.Wrapper):
+class DictAgents(gymnasium.Wrapper):
     def reset(self, **kwargs):
         observation = super().reset(**kwargs)
         digits = int(math.log10(self.n_agents)) + 1
@@ -87,7 +87,7 @@ class FlattenSAObservation(ObservationWrapper):
     def observation(self, observation):
         return [spaces.flatten(obs_space, obs) for obs_space, obs in zip(self.env.observation_space, observation)]
 
-class SquashDones(gym.Wrapper):
+class SquashDones(gymnasium.Wrapper):
 
     def step(self, action):
         observation, reward, done, info = self.env.step(action)

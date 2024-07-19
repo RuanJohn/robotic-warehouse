@@ -1,9 +1,9 @@
 import os
 import sys
 import pytest
-import gym
+import gymnasium
 import numpy as np
-from gym import spaces
+from gymnasium import spaces
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(TEST_DIR, os.pardir))
@@ -195,7 +195,7 @@ def test_obs_space_2():
     )
     obs = env.reset()
     for s, o in zip(env.observation_space, obs):
-        assert len(gym.spaces.flatten(s, o)) == env._obs_length
+        assert len(gymnasium.spaces.flatten(s, o)) == env._obs_length
 
 
 def test_inactivity_0(env_0):
